@@ -2,14 +2,12 @@ package com.devnilesh.journalapp.controller;
 
 import com.devnilesh.journalapp.controller.entry.User;
 import com.devnilesh.journalapp.service.UserEntryService;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -42,7 +40,7 @@ public class UserEntryController {
     @PutMapping("/{username}")
     public ResponseEntity<?> updateUser(@RequestBody User user,@PathVariable String username )
     {
-        User userInDb = userEntryService.updateByUserName(username);
+        User userInDb = userEntryService.findByUserName(username);
         if(userInDb !=null )
         {
             userInDb.setUserName(user.getUserName());

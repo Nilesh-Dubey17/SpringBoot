@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Document(collection = "journalEntry")
 @Data
+@NoArgsConstructor
 public class JournalEntry {
 
     @Id
