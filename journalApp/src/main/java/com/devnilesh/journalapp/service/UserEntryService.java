@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class UserEntryService {
@@ -24,16 +25,24 @@ public class UserEntryService {
         userEntryRepository.save(user);
     }
 
+
+    public void saveAdmin(User user)
+    {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRoles(Arrays.asList("ADMIN","USER"));
+        userEntryRepository.save(user);
+    }
+
     public void saveUser(User user)
     {
         userEntryRepository.save(user);
     }
 
-//    public List<User> getAll()
-//    {
-//        return userEntryRepository.findAll();
-//    }
-// we're going use it in as admin controller
+    public List<User> getAll()
+    {
+        return userEntryRepository.findAll();
+    }
+ //we're going use it in as admin controller
 
 
     public User findByUserName(String userName) {
